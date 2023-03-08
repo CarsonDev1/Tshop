@@ -34,7 +34,7 @@ export default function useRouteElements() {
       element: <ProtectedRoute />,
       children: [
         {
-          path: path.profile,
+          path: path,
           element: (
             <MainLayout>
               <Profile />
@@ -48,7 +48,7 @@ export default function useRouteElements() {
       element: <RejectedRoute />,
       children: [
         {
-          path: path.login,
+          path: '/login',
           element: (
             <RegisterLayout>
               <Login />
@@ -56,7 +56,7 @@ export default function useRouteElements() {
           )
         },
         {
-          path: path.register,
+          path: '/register',
           element: (
             <RegisterLayout>
               <Register />

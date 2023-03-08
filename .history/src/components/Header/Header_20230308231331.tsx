@@ -8,12 +8,11 @@ import logo from '../../assets/logoHeader.png'
 import Popover from '../Popover'
 
 export default function Header() {
-  const { setIsAuthenticated, isAuthenticated, setProfile, profile } = useContext(AppContext)
+  const { setIsAuthenticated, isAuthenticated } = useContext(AppContext)
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
       setIsAuthenticated(false)
-      setProfile(null)
     }
   })
   const handleLogout = () => {
@@ -93,7 +92,7 @@ export default function Header() {
                   className='h-full w-full rounded-full object-cover'
                 />
               </div>
-              <div>{profile?.email}</div>
+              <div>Bùi Trí Tính</div>
             </Popover>
           )}
           {!isAuthenticated && (

@@ -15,7 +15,7 @@ type FormData = Omit<Schema, 'confirm_password'>
 const loginSchema = schema.omit(['confirm_password'])
 
 export default function Login() {
-  const { setIsAuthenticated, setProfile } = useContext(AppContext)
+  const { setIsAuthenticated } = useContext(AppContext)
   const navigate = useNavigate()
   const {
     register,
@@ -30,9 +30,8 @@ export default function Login() {
   })
   const onSubmit = handleSubmit((data) => {
     loginAccountMutation.mutate(data, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         setIsAuthenticated(true)
-        setProfile(data.data.data.user)
         navigate('/')
       },
       onError: (error) => {
@@ -78,9 +77,8 @@ export default function Login() {
               <div className='mt-3'>
                 <Button
                   type='submit'
-                  className='flex w-full items-center justify-center bg-primary py-4 text-sm uppercase text-white hover:bg-primary'
-                  isLoading={loginAccountMutation.isLoading}
-                  disabled={loginAccountMutation.isLoading}
+                  className='w-full bg-primary py-4 text-center text-sm uppercase text-white hover:bg-primary'
+                  isLoading
                 >
                   Đăng Nhập
                 </Button>

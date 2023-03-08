@@ -11,8 +11,7 @@ interface AppContextInterface {
 const initalAppContext: AppContextInterface = {
   isAuthenticated: Boolean(getAccessTokenFromLs()),
   setIsAuthenticated: () => null,
-  profile: getProfileFromLS(),
-  setProfile: () => null
+  profile: getProfileFromLS()
 }
 
 export const AppContext = createContext<AppContextInterface>(initalAppContext)

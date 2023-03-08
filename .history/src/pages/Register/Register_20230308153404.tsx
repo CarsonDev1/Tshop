@@ -10,16 +10,16 @@ import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 import { ErrorResponse } from 'src/types/utils.type'
 import { AppContext } from 'src/contexts/app.context'
 import { useContext } from 'react'
-import Button from 'src/components/Button'
 
 type FormData = Schema
 
 export default function Register() {
-  const { setIsAuthenticated, setProfile } = useContext(AppContext)
+  const { setIsAuthenticated } = useContext(AppContext)
   const navigate = useNavigate()
   const {
     register,
     handleSubmit,
+    watch,
     setError,
     formState: { errors }
   } = useForm<FormData>({
@@ -31,9 +31,8 @@ export default function Register() {
   const onSubmit = handleSubmit((data) => {
     const body = omit(data, ['confirm_password'])
     registerAccountMutation.mutate(body, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         setIsAuthenticated(true)
-        setProfile(data.data.data.user)
         navigate('/login')
       },
       onError: (error) => {
@@ -63,6 +62,8 @@ export default function Register() {
       }
     })
   })
+  // const value = watch()
+  // console.log(value)
 
   return (
     <div className='bg-primary'>
@@ -98,14 +99,12 @@ export default function Register() {
                 autoComplete='on'
               />
               <div className='mt-2'>
-                <Button
+                <button
                   type='submit'
-                  className='flex w-full items-center justify-center bg-primary py-4 text-sm uppercase text-white hover:bg-primary'
-                  isLoading={registerAccountMutation.isLoading}
-                  disabled={registerAccountMutation.isLoading}
+                  className='w-full bg-primary py-4 text-center text-sm uppercase text-white hover:bg-primary'
                 >
                   Đăng Ký
-                </Button>
+                </button>
               </div>
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-400'>Bạn đã có tài khoản?</span>

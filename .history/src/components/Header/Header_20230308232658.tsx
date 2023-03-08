@@ -93,7 +93,7 @@ export default function Header() {
                   className='h-full w-full rounded-full object-cover'
                 />
               </div>
-              <div>{profile?.email}</div>
+              <div>{profile}</div>
             </Popover>
           )}
           {!isAuthenticated && (

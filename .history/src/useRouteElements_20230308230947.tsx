@@ -56,7 +56,7 @@ export default function useRouteElements() {
           )
         },
         {
-          path: path.register,
+          path: '/register',
           element: (
             <RegisterLayout>
               <Register />

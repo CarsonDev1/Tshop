@@ -34,6 +34,7 @@ export default function Register() {
       onSuccess: (data) => {
         setIsAuthenticated(true)
         setProfile(data.data.data.user)
+
         navigate('/login')
       },
       onError: (error) => {

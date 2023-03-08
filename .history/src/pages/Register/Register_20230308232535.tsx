@@ -31,9 +31,8 @@ export default function Register() {
   const onSubmit = handleSubmit((data) => {
     const body = omit(data, ['confirm_password'])
     registerAccountMutation.mutate(body, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         setIsAuthenticated(true)
-        setProfile(data.data.data.user)
         navigate('/login')
       },
       onError: (error) => {
