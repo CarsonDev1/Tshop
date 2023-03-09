@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Product() {
   return (
     <Link to='/'>
-      <div className='overflow-hidden rounded-sm bg-white shadow transition-transform duration-100 hover:translate-y-[-0.04rem] hover:shadow-md'>
+      <div className='rounded-sm bg-white shadow transition-transform duration-100 hover:translate-y-[-0.0625rem] hover:shadow-md'>
         <div className='relative w-full pt-[100%]'>
           <img
             src='https://cf.shopee.vn/file/sg-11134201-22100-g087citq2bjv59'
@@ -12,7 +12,7 @@ export default function Product() {
           />
         </div>
         <div className='overflow-hidden p-2'>
-          <div className='min-h-[2rem] text-xs line-clamp-2'>
+          <div className='min-h-[1.75rem] text-sm line-clamp-2'>
             Áo Thun LEVENTS POPULAR LOGO TEE Nam Nữ Unisex Form Rộng Tay Lỡ, AT125 trending xu hướng, Men Lì Fashion
           </div>
           <div className='mt-3 flex items-center'>
@@ -44,26 +44,22 @@ export default function Product() {
                       strokeMiterlimit={10}
                     />
                   </svg>
+                  <svg
+                    enableBackground='new 0 0 15 15'
+                    viewBox='0 0 15 15'
+                    x={0}
+                    y={0}
+                    className='h-3 w-3 fill-current text-gray-300'
+                  >
+                    <polygon
+                      points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeMiterlimit={10}
+                    />
+                  </svg>
                 </div>
-                <svg
-                  enableBackground='new 0 0 15 15'
-                  viewBox='0 0 15 15'
-                  x={0}
-                  y={0}
-                  className='h-3 w-3 fill-current text-gray-300'
-                >
-                  <polygon
-                    points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeMiterlimit={10}
-                  />
-                </svg>
               </div>
-            </div>
-            <div className='ml-2 text-sm'>
-              <span>7.99k</span>
-              <span className='ml-1'>Đã bán</span>
             </div>
           </div>
         </div>
