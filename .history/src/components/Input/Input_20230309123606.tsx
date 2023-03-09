@@ -19,10 +19,8 @@ export default function Input({
   register,
   rules,
   autoComplete,
-  classNameInput = 'w-full rounded-sm border border-gray-300 p-3 outline-none focus:border-gray-500 focus:shadow-sm',
-  clasNameError = 'mt-1 min-h-[1.25rem] text-sm text-red-600'
+  classNameInput = 'w-full rounded-sm border border-gray-300 p-3 outline-none focus:border-gray-500 focus:shadow-sm'
 }: Props) {
-  const registerResult = register && name ? register(name, rules) : {}
   return (
     <div className={className}>
       <input
@@ -30,9 +28,9 @@ export default function Input({
         className={classNameInput}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        {...registerResult}
+        {...register(name, rules)}
       />
-      <div className={clasNameError}>{errorMessage}</div>
+      <div className='mt-1 min-h-[1.25rem] text-sm text-red-600'>{errorMessage}</div>
     </div>
   )
 }
