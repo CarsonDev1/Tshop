@@ -35,7 +35,7 @@ export default function ProductList() {
                   </div>
                 ))}
             </div>
-            <Pagination page={page} setPage={setPage} pageSize={7} />
+            <Pagination page={1} setPage={setPage} pageSize={20} />
           </div>
         </div>
       </div>
