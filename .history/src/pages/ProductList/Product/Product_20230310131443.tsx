@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Product as ProductType } from 'src/types/product.type'
-import { formatCurrency, formatNumberToSocialStyle } from 'src/utils/utils'
+import { formatNumberToSocialStyle } from 'src/utils/utils'
 
 interface Props {
   product: ProductType
@@ -22,11 +22,11 @@ export default function Product({ product }: Props) {
           <div className='mt-3 flex items-center'>
             <div className='max-w-[50%] truncate text-gray-500 line-through'>
               <span className='text-xs'>₫</span>
-              <span>{formatCurrency(product.price_before_discount)}</span>
+              <span>{product.price_before_discount}</span>
             </div>
             <div className='ml-1 truncate text-primary'>
               <span className='text-xs'>₫</span>
-              <span>{formatCurrency(product.price)}</span>
+              <span>{product.price}</span>
             </div>
           </div>
           <div className='mt-3 flex items-center justify-end'>

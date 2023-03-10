@@ -28,7 +28,7 @@ export default function ProductList() {
               {data &&
                 data.data.data.products.map((product) => (
                   <div className='col-span-1' key={product._id}>
-                    <Product product={product} />
+                    <Product />
                   </div>
                 ))}
             </div>
