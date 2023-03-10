@@ -13,7 +13,7 @@ export default function ProductList() {
       return productApi.getProducts(queryParams)
     }
   })
-  console.log(queryParams)
+  console.log(data)
 
   return (
     <div className='bg-gray-200 py-6'>
