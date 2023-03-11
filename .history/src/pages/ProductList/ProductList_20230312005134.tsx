@@ -32,8 +32,7 @@ export default function ProductList() {
     queryKey: ['products', queryConfig],
     queryFn: () => {
       return productApi.getProducts(queryConfig as ProductListConfig)
-    },
-    keepPreviousData: true
+    }
   })
   console.log(data)
 
@@ -54,7 +53,7 @@ export default function ProductList() {
                   </div>
                 ))}
               </div>
-              <Pagination queryConfig={queryConfig} pageSize={data.data.data.pagination.page_size} />
+              <Pagination queryConfig={queryConfig} pageSize={data?.data.data} />
             </div>
           </div>
         )}

@@ -32,8 +32,7 @@ export default function ProductList() {
     queryKey: ['products', queryConfig],
     queryFn: () => {
       return productApi.getProducts(queryConfig as ProductListConfig)
-    },
-    keepPreviousData: true
+    }
   })
   console.log(data)
 

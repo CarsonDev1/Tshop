@@ -123,7 +123,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
               page: (page + 1).toString()
             }).toString()
           }}
-          className='mx-2 flex cursor-pointer items-center rounded border bg-white/60 px-3 py-2 shadow-sm'
+          className='mx-2 flex cursor-pointer items-center rounded border bg-white px-3 py-2 shadow-sm'
         >
           Next
         </Link>

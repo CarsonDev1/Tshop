@@ -106,28 +106,11 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
           }}
           className='mx-2 flex cursor-pointer items-center rounded border bg-white px-3 py-2 shadow-sm'
         >
-          Prev
+          Next
         </Link>
       )}
       {renderPagination()}
-      {page === pageSize ? (
-        <span className='mx-2 flex cursor-not-allowed items-center rounded border bg-white/60 px-3 py-2 shadow-sm'>
-          Next
-        </span>
-      ) : (
-        <Link
-          to={{
-            pathname: path.home,
-            search: createSearchParams({
-              ...queryConfig,
-              page: (page + 1).toString()
-            }).toString()
-          }}
-          className='mx-2 flex cursor-pointer items-center rounded border bg-white/60 px-3 py-2 shadow-sm'
-        >
-          Next
-        </Link>
-      )}
+      <button>Next</button>
     </div>
   )
 }
