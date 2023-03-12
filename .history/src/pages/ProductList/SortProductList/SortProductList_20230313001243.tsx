@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { omit } from 'lodash'
-import { createSearchParams, Link, useNavigate } from 'react-router-dom'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 import path from 'src/constants/path'
 import { order as orderConstant, sortBy } from 'src/constants/product'
 import { ProductListConfig } from 'src/types/product.type'
@@ -12,7 +12,6 @@ interface Props {
 }
 
 export default function SortProductList({ queryConfig, pageSize }: Props) {
-  const page = Number(queryConfig.page)
   const { sort_by = sortBy.createdAt, order } = queryConfig
   const navigate = useNavigate()
   const isActiveSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
@@ -95,86 +94,36 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
         </div>
         <div className='flex items-center'>
           <div>
-            <span className='text-primary'>{page}</span>
-            <span>/{pageSize}</span>
+            <span className='text-primary'>1</span>
+            <span>/2</span>
           </div>
-          <div className='ml-2 flex'>
-            {page === 1 ? (
-              <span className='flex h-8 w-9 cursor-not-allowed items-center justify-center rounded-tl-sm rounded-bl-sm bg-white/60 shadow hover:bg-slate-100'>
-                <svg
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={1.5}
-                  viewBox='0 0 24 24'
-                  xmlns='http://www.w3.org/2000/svg'
-                  aria-hidden='true'
-                  className='h-3 w-3'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' d='M15.75 19.5L8.25 12l7.5-7.5' />
-                </svg>
-              </span>
-            ) : (
-              <Link
-                to={{
-                  pathname: path.home,
-                  search: createSearchParams({
-                    ...queryConfig,
-                    page: (page - 1).toString()
-                  }).toString()
-                }}
-                className='flex h-8 w-9 items-center justify-center rounded-tl-sm rounded-bl-sm bg-white shadow hover:bg-slate-100'
+          <div className='ml-2'>
+            <button className='h-8 cursor-not-allowed rounded-tl-sm rounded-bl-sm bg-white/60 px-3 shadow hover:bg-slate-100'>
+              <svg
+                fill='none'
+                stroke='currentColor'
+                strokeWidth={1.5}
+                viewBox='0 0 24 24'
+                xmlns='http://www.w3.org/2000/svg'
+                aria-hidden='true'
+                className='h-3 w-3'
               >
-                <svg
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={1.5}
-                  viewBox='0 0 24 24'
-                  xmlns='http://www.w3.org/2000/svg'
-                  aria-hidden='true'
-                  className='h-3 w-3'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' d='M15.75 19.5L8.25 12l7.5-7.5' />
-                </svg>
-              </Link>
-            )}
-            {page === pageSize ? (
-              <span className='flex h-8 w-9 cursor-not-allowed items-center justify-center rounded-tl-sm rounded-bl-sm bg-white/60 shadow hover:bg-slate-100'>
-                <svg
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={1.5}
-                  viewBox='0 0 24 24'
-                  xmlns='http://www.w3.org/2000/svg'
-                  aria-hidden='true'
-                  className='h-3 w-3'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' d='M8.25 4.5l7.5 7.5-7.5 7.5' />
-                </svg>
-              </span>
-            ) : (
-              <Link
-                to={{
-                  pathname: path.home,
-                  search: createSearchParams({
-                    ...queryConfig,
-                    page: (page + 1).toString()
-                  }).toString()
-                }}
-                className='flex h-8 w-9 items-center justify-center rounded-tl-sm rounded-bl-sm bg-white shadow hover:bg-slate-100'
+                <path strokeLinecap='round' strokeLinejoin='round' d='M15.75 19.5L8.25 12l7.5-7.5' />
+              </svg>
+            </button>
+            <button className='h-8 rounded-tr-sm rounded-br-sm bg-white px-3 shadow hover:bg-slate-100'>
+              <svg
+                fill='none'
+                stroke='currentColor'
+                strokeWidth={1.5}
+                viewBox='0 0 24 24'
+                xmlns='http://www.w3.org/2000/svg'
+                aria-hidden='true'
+                className='h-3 w-3'
               >
-                <svg
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={1.5}
-                  viewBox='0 0 24 24'
-                  xmlns='http://www.w3.org/2000/svg'
-                  aria-hidden='true'
-                  className='h-3 w-3'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' d='M8.25 4.5l7.5 7.5-7.5 7.5' />
-                </svg>
-              </Link>
-            )}
+                <path strokeLinecap='round' strokeLinejoin='round' d='M8.25 4.5l7.5 7.5-7.5 7.5' />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
