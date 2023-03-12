@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { omitBy, isUndefined } from 'lodash'
-import categoryApi from 'src/apis/category.api'
 import productApi from 'src/apis/product.api'
 import Pagination from 'src/components/Pagination'
 import useQueryParams from 'src/hooks/useQueryParams'
@@ -25,8 +24,7 @@ export default function ProductList() {
       order: queryParams.order,
       price_max: queryParams.price_max,
       price_min: queryParams.price_min,
-      rating_filter: queryParams.rating_filter,
-      category: queryParams.category
+      rating_filter: queryParams.rating_filter
     },
     isUndefined
   )
@@ -37,12 +35,6 @@ export default function ProductList() {
     },
     keepPreviousData: true
   })
-  const { data: categoriesData } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => {
-      return categoryApi.getCategories()
-    }
-  })
 
   return (
     <div className='bg-gray-200 py-6'>
@@ -50,7 +42,7 @@ export default function ProductList() {
         {productsData && (
           <div className='grid grid-cols-12 gap-6'>
             <div className='col-span-3'>
-              <AsideFilter queryConfig={queryConfig} categories={categoriesData?.data.data || []} />
+              <AsideFilter />
             </div>
             <div className='col-span-9'>
               <SortProductList queryConfig={queryConfig} pageSize={productsData.data.data.pagination.page_size} />
