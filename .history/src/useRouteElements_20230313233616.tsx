@@ -74,6 +74,20 @@ export default function useRouteElements() {
           <ProductDetail />
         </MainLayout>
       )
+    },
+    {
+      path: '',
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: path.profile,
+          element: (
+            <MainLayout>
+              <Profile />
+            </MainLayout>
+          )
+        }
+      ]
     }
   ])
   return routeElements
