@@ -9,8 +9,6 @@ import { useForm, Controller } from 'react-hook-form'
 import { Schema, schema } from 'src/utils/rules'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { NoUnderfinedField } from 'src/types/utils.type'
-import RatingStars from 'src/components/RatingStars'
-import { omit } from 'lodash'
 
 interface Props {
   queryConfig: QueryConfig

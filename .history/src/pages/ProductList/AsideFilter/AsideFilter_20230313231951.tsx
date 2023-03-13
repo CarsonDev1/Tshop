@@ -191,10 +191,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
       <div className='text-sm'>Đánh giá</div>
       <RatingStars queryConfig={queryConfig} />
       <div className='my-4 h-[1px] bg-gray-300' />
-      <Button
-        onClick={handleRemoveAll}
-        className='flex w-full items-center justify-center bg-primary p-2 text-sm uppercase text-white hover:bg-primary/80'
-      >
+      <Button className='flex w-full items-center justify-center bg-primary p-2 text-sm uppercase text-white hover:bg-primary/80'>
         Xóa tất cả
       </Button>
     </div>
