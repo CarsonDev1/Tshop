@@ -8,13 +8,12 @@ import { QueryConfig } from '../ProductList'
 import { useForm, Controller } from 'react-hook-form'
 import { Schema, schema } from 'src/utils/rules'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { NoUnderfinedField } from 'src/types/utils.type'
 
 interface Props {
   queryConfig: QueryConfig
   categories: Category[]
 }
-type FormData = NoUnderfinedField<Pick<Schema, 'price_max' | 'price_min'>>
+type FormData = Pick<Schema, 'price_max' | 'price_min'>
 /**
  * Rule validate
  * Nếu có price_min và price_max thì price_max >= price_min

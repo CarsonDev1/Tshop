@@ -12,7 +12,7 @@ import { schema, Schema } from 'src/utils/rules'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
 type FormData = Pick<Schema, 'email' | 'password'>
-const loginSchema = schema.pick(['email', 'password'])
+const loginSchema = schema.omit(['confirm_password'])
 
 export default function Login() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)

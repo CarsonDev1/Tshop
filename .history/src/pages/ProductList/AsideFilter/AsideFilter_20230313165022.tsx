@@ -6,15 +6,17 @@ import path from 'src/constants/path'
 import { Category } from 'src/types/category.type'
 import { QueryConfig } from '../ProductList'
 import { useForm, Controller } from 'react-hook-form'
-import { Schema, schema } from 'src/utils/rules'
+import { schema } from 'src/utils/rules'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { NoUnderfinedField } from 'src/types/utils.type'
 
 interface Props {
   queryConfig: QueryConfig
   categories: Category[]
 }
-type FormData = NoUnderfinedField<Pick<Schema, 'price_max' | 'price_min'>>
+type FormData = {
+  price_min: string
+  price_max: string
+}
 /**
  * Rule validate
  * Nếu có price_min và price_max thì price_max >= price_min

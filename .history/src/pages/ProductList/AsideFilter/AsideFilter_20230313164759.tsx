@@ -1,20 +1,22 @@
 import classNames from 'classnames'
-import { createSearchParams, Link, useNavigate } from 'react-router-dom'
+import { createSearchParams, Link } from 'react-router-dom'
 import Button from 'src/components/Button'
 import InputNumber from 'src/components/InputNumber'
 import path from 'src/constants/path'
 import { Category } from 'src/types/category.type'
 import { QueryConfig } from '../ProductList'
 import { useForm, Controller } from 'react-hook-form'
-import { Schema, schema } from 'src/utils/rules'
+import { schema } from 'src/utils/rules'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { NoUnderfinedField } from 'src/types/utils.type'
 
 interface Props {
   queryConfig: QueryConfig
   categories: Category[]
 }
-type FormData = NoUnderfinedField<Pick<Schema, 'price_max' | 'price_min'>>
+type FormData = {
+  price_min: string
+  price_max: string
+}
 /**
  * Rule validate
  * Nếu có price_min và price_max thì price_max >= price_min
@@ -39,19 +41,11 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     resolver: yupResolver(priceSchema),
     shouldFocusError: false
   })
-  const navigate = useNavigate()
   const valueForm = watch()
   console.log(errors)
 
   const onSubmit = handleSubmit((data) => {
-    navigate({
-      pathname: path.home,
-      search: createSearchParams({
-        ...queryConfig,
-        price_max: data.price_max,
-        price_min: data.price_min
-      }).toString()
-    })
+    console.log(data)
   })
   return (
     <div className='py-4'>

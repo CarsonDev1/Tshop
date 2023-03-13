@@ -1,20 +1,22 @@
 import classNames from 'classnames'
-import { createSearchParams, Link, useNavigate } from 'react-router-dom'
+import { createSearchParams, Link } from 'react-router-dom'
 import Button from 'src/components/Button'
 import InputNumber from 'src/components/InputNumber'
 import path from 'src/constants/path'
 import { Category } from 'src/types/category.type'
 import { QueryConfig } from '../ProductList'
 import { useForm, Controller } from 'react-hook-form'
-import { Schema, schema } from 'src/utils/rules'
+import { schema } from 'src/utils/rules'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { NoUnderfinedField } from 'src/types/utils.type'
 
 interface Props {
   queryConfig: QueryConfig
   categories: Category[]
 }
-type FormData = NoUnderfinedField<Pick<Schema, 'price_max' | 'price_min'>>
+type FormData = {
+  price_min: string
+  price_max: string
+}
 /**
  * Rule validate
  * Nếu có price_min và price_max thì price_max >= price_min
@@ -29,7 +31,6 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     control,
     handleSubmit,
     watch,
-    trigger,
     formState: { errors }
   } = useForm<FormData>({
     defaultValues: {
@@ -39,19 +40,11 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     resolver: yupResolver(priceSchema),
     shouldFocusError: false
   })
-  const navigate = useNavigate()
   const valueForm = watch()
   console.log(errors)
 
   const onSubmit = handleSubmit((data) => {
-    navigate({
-      pathname: path.home,
-      search: createSearchParams({
-        ...queryConfig,
-        price_max: data.price_max,
-        price_min: data.price_min
-      }).toString()
-    })
+    console.log(data)
   })
   return (
     <div className='py-4'>
@@ -141,11 +134,9 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     placeholder='₫ TỪ'
                     classNameInput='w-full rounded-sm border border-gray-300 p-1 outline-none focus:border-gray-500 focus:shadow-sm '
                     clasNameError='hidden'
-                    {...field}
-                    onChange={(e) => {
-                      field.onChange(e)
-                      trigger('price_max')
-                    }}
+                    onChange={field.onChange}
+                    value={field.value}
+                    ref={field.ref}
                   />
                 )
               }}
@@ -163,17 +154,15 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     placeholder='₫ ĐẾN'
                     classNameInput='w-full rounded-sm border border-gray-300 p-1 outline-none focus:border-gray-500 focus:shadow-sm '
                     clasNameError='hidden'
-                    {...field}
-                    onChange={(e) => {
-                      field.onChange(e)
-                      trigger('price_min')
-                    }}
+                    onChange={field.onChange}
+                    value={field.value}
+                    ref={field.ref}
                   />
                 )
               }}
             />
           </div>
-          <div className='mt-1 min-h-[1.25rem] text-center text-sm text-red-600'>{errors.price_min?.message}</div>
+          <div className='mt-1 min-h-[1.25rem] text-sm text-red-600'></div>
           <Button className='flex w-full items-center justify-center bg-primary p-2 text-sm uppercase text-white hover:bg-primary/80'>
             Áp dụng
           </Button>
