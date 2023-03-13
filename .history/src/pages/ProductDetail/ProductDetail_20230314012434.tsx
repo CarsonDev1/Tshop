@@ -17,10 +17,7 @@ export default function ProductDetail() {
   const [currentIndexImages, setCurrentIndexImages] = useState([0, 5])
   const [activeImage, setActiveImage] = useState('')
   const product = productDetailData?.data.data
-  const currentImages = useMemo(
-    () => (product ? product.images.slice(...currentIndexImages) : []),
-    [product, currentIndexImages]
-  )
+  const currentImages = useMemo(() => (product ? product.images.slice(...currentIndexImages) : []), [product])
 
   useEffect(() => {
     if (product && product.images.length > 0) {

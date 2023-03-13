@@ -19,7 +19,7 @@ export default function ProductDetail() {
   const product = productDetailData?.data.data
   const currentImages = useMemo(
     () => (product ? product.images.slice(...currentIndexImages) : []),
-    [product, currentIndexImages]
+    [currentIndexImages, product]
   )
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function ProductDetail() {
   }, [product])
 
   const next = () => {
-    if (currentIndexImages[1] < (product as Product).images.length) {
+    if (currentIndexImages[1] < (product as Product)?.images.length) {
       setCurrentIndexImages((prev) => [prev[0] + 1, prev[1] + 1])
     }
   }

@@ -19,7 +19,7 @@ export default function ProductDetail() {
   const product = productDetailData?.data.data
   const currentImages = useMemo(
     () => (product ? product.images.slice(...currentIndexImages) : []),
-    [product, currentIndexImages]
+    [currentIndexImages, product]
   )
 
   useEffect(() => {
