@@ -58,9 +58,6 @@ export default function ProductDetail() {
     image.style.top = top + 'px'
     image.style.left = left + 'px'
   }
-  const handleRemoveZoom = () => {
-    imageRef.current?.removeAttribute('style')
-  }
 
   if (!product) return null
   return (
@@ -70,14 +67,13 @@ export default function ProductDetail() {
           <div className='grid grid-cols-12 gap-9'>
             <div className='col-span-5'>
               <div
-                className='relative w-full cursor-zoom-in overflow-hidden pt-[100%] shadow'
+                className='pointer-events-none relative w-full overflow-hidden pt-[100%] shadow'
                 onMouseMove={handleZoom}
-                onMouseLeave={handleRemoveZoom}
               >
                 <img
                   src={activeImage}
                   alt={product.name}
-                  className='pointer-events-none absolute top-0 left-0 h-full w-full bg-white object-cover'
+                  className='absolute top-0 left-0 h-full w-full bg-white object-cover'
                   ref={imageRef}
                 />
               </div>

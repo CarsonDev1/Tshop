@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import DOMPurify from 'dompurify'
-import { unset } from 'lodash'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import productApi from 'src/apis/product.api'
@@ -45,21 +44,10 @@ export default function ProductDetail() {
     setActiveImage(img)
   }
   const handleZoom = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    // console.log(rect)
     const image = imageRef.current as HTMLImageElement
     const { naturalWidth, naturalHeight } = image
-    const { offsetX, offsetY } = e.nativeEvent
-    const left = offsetX * (1 - naturalWidth / rect.width)
-    const top = offsetY * (1 - naturalHeight / rect.height)
     image.style.width = naturalWidth + 'px'
     image.style.height = naturalHeight + 'px'
-    image.style.maxWidth = 'unset'
-    image.style.top = top + 'px'
-    image.style.left = left + 'px'
-  }
-  const handleRemoveZoom = () => {
-    imageRef.current?.removeAttribute('style')
   }
 
   if (!product) return null
@@ -69,15 +57,11 @@ export default function ProductDetail() {
         <div className='bg-white p-4 shadow'>
           <div className='grid grid-cols-12 gap-9'>
             <div className='col-span-5'>
-              <div
-                className='relative w-full cursor-zoom-in overflow-hidden pt-[100%] shadow'
-                onMouseMove={handleZoom}
-                onMouseLeave={handleRemoveZoom}
-              >
+              <div className='relative w-full pt-[100%] shadow' onMouseMove={handleZoom}>
                 <img
                   src={activeImage}
                   alt={product.name}
-                  className='pointer-events-none absolute top-0 left-0 h-full w-full bg-white object-cover'
+                  className='absolute top-0 left-0 h-full w-full bg-white object-cover'
                   ref={imageRef}
                 />
               </div>
