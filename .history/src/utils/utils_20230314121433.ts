@@ -34,6 +34,6 @@ export const generateNameId = ({ name, id }: { name: string; id: string }) => {
 }
 
 export const getIdFromNameId = (nameId: string) => {
-  const arr = nameId.split('-i,')
+  const arr = nameId.split('-i.')
   return arr[arr.length - 1]
 }
