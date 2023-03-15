@@ -10,7 +10,6 @@ import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } 
 import Product from '../ProductList/components/Product'
 
 export default function ProductDetail() {
-  const [buyCount, setBuyCount] = useState(1)
   const { nameId } = useParams()
   const id = getIdFromNameId(nameId as string)
   const { data: productDetailData } = useQuery({
@@ -70,10 +69,6 @@ export default function ProductDetail() {
   }
   const handleRemoveZoom = () => {
     imageRef.current?.removeAttribute('style')
-  }
-
-  const handleBuyCount = (value: number) => {
-    setBuyCount(value)
   }
 
   if (!product) return null
@@ -167,13 +162,7 @@ export default function ProductDetail() {
               </div>
               <div className='mt-8 flex items-center'>
                 <div className='capitalize text-gray-500'>Số lượng</div>
-                <QuantityController
-                  onDecrease={handleBuyCount}
-                  onIncrease={handleBuyCount}
-                  onType={handleBuyCount}
-                  value={buyCount}
-                  max={product.quantity}
-                />
+                <QuantityController />
                 <div className='ml-6 text-sm text-gray-500'>{product.quantity} sản phẩm có sẵn</div>
               </div>
               <div className='mt-8 flex items-center'>

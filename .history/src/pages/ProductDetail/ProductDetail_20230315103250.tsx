@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import productApi from 'src/apis/product.api'
+import InputNumber from 'src/components/InputNumber'
 import ProductRating from 'src/components/ProductRating'
 import QuantityController from 'src/components/QuantityController'
 import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
@@ -10,7 +11,6 @@ import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } 
 import Product from '../ProductList/components/Product'
 
 export default function ProductDetail() {
-  const [buyCount, setBuyCount] = useState(1)
   const { nameId } = useParams()
   const id = getIdFromNameId(nameId as string)
   const { data: productDetailData } = useQuery({
@@ -70,10 +70,6 @@ export default function ProductDetail() {
   }
   const handleRemoveZoom = () => {
     imageRef.current?.removeAttribute('style')
-  }
-
-  const handleBuyCount = (value: number) => {
-    setBuyCount(value)
   }
 
   if (!product) return null
@@ -167,13 +163,7 @@ export default function ProductDetail() {
               </div>
               <div className='mt-8 flex items-center'>
                 <div className='capitalize text-gray-500'>Số lượng</div>
-                <QuantityController
-                  onDecrease={handleBuyCount}
-                  onIncrease={handleBuyCount}
-                  onType={handleBuyCount}
-                  value={buyCount}
-                  max={product.quantity}
-                />
+                <QuantityController />
                 <div className='ml-6 text-sm text-gray-500'>{product.quantity} sản phẩm có sẵn</div>
               </div>
               <div className='mt-8 flex items-center'>

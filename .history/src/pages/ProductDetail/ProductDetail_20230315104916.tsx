@@ -72,10 +72,6 @@ export default function ProductDetail() {
     imageRef.current?.removeAttribute('style')
   }
 
-  const handleBuyCount = (value: number) => {
-    setBuyCount(value)
-  }
-
   if (!product) return null
   return (
     <div className='bg-gray-200 py-6'>
@@ -167,13 +163,7 @@ export default function ProductDetail() {
               </div>
               <div className='mt-8 flex items-center'>
                 <div className='capitalize text-gray-500'>Số lượng</div>
-                <QuantityController
-                  onDecrease={handleBuyCount}
-                  onIncrease={handleBuyCount}
-                  onType={handleBuyCount}
-                  value={buyCount}
-                  max={product.quantity}
-                />
+                <QuantityController />
                 <div className='ml-6 text-sm text-gray-500'>{product.quantity} sản phẩm có sẵn</div>
               </div>
               <div className='mt-8 flex items-center'>
