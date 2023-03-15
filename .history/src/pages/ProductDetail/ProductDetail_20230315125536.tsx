@@ -7,7 +7,7 @@ import productApi from 'src/apis/product.api'
 import purchaseApi from 'src/apis/purchase.api'
 import ProductRating from 'src/components/ProductRating'
 import QuantityController from 'src/components/QuantityController'
-import { purchasesStatus } from 'src/constants/purchase'
+import { purchaseStatus } from 'src/constants/purchase'
 import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
 import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } from 'src/utils/utils'
 import Product from '../ProductList/components/Product'
@@ -87,8 +87,8 @@ export default function ProductDetail() {
       { buy_count: buyCount, product_id: product?._id as string },
       {
         onSuccess: (data) => {
-          toast.success(data.data.message, { autoClose: 1000 })
-          queryClient.invalidateQueries({ queryKey: ['purchases', { status: purchasesStatus.inCart }] })
+          toast.success(data.data.message, { autoClose: 3000 })
+          queryClient.invalidateQueries({ queryKey: ['purchases', { status: purchaseStatus.inCart }] })
         }
       }
     )

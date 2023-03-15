@@ -11,7 +11,7 @@ import Popover from '../Popover'
 import { schema, Schema } from 'src/utils/rules'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { omit } from 'lodash'
-import { purchasesStatus } from 'src/constants/purchase'
+import { purchaseStatus } from 'src/constants/purchase'
 import purchaseApi from 'src/apis/purchase.api'
 import noproduct from 'src/assets/images/no-product.png'
 import { formatCurrency } from 'src/utils/utils'
@@ -39,8 +39,8 @@ export default function Header() {
   })
 
   const { data: purchaseInCartData } = useQuery({
-    queryKey: ['purchases', { status: purchasesStatus.inCart }],
-    queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart })
+    queryKey: ['purchases', { status: purchaseStatus.inCart }],
+    queryFn: () => purchaseApi.getPurchases({ status: purchaseStatus.inCart })
   })
   const purchaseInCart = purchaseInCartData?.data.data
   const handleLogout = () => {
