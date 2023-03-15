@@ -37,21 +37,17 @@ export default function Header() {
     logoutMutation.mutate()
   }
   const onSubmitSearch = handleSubmit((data) => {
-    const config = queryConfig.order
-      ? omit(
+    navigate({
+      pathname: path.home,
+      search: createSearchParams(
+        omit(
           {
             ...queryConfig,
             name: data.name
           },
-          ['order', 'sort_by']
+          ['order']
         )
-      : {
-          ...queryConfig,
-          name: data.name
-        }
-    navigate({
-      pathname: path.home,
-      search: createSearchParams(config).toString()
+      ).toString()
     })
   })
   return (

@@ -25,7 +25,7 @@ export default function ProductDetail() {
     [product, currentIndexImages]
   )
   const queryConfig: ProductListConfig = { limit: '20', page: '1', category: product?.category._id }
-  const { data: productsData } = useQuery({
+  const { data: productData } = useQuery({
     queryKey: ['products', queryConfig],
     queryFn: () => {
       return productApi.getProducts(queryConfig)
@@ -231,25 +231,22 @@ export default function ProductDetail() {
           </div>
         </div>
       </div>
-      <div className='mt-8'>
-        <div className='container'>
-          <div className='mt-8 bg-white p-4 shadow'>
-            <div className='rounded bg-gray-50 p-4 text-lg capitalize text-slate-700'>Mô tả sản phẩm</div>
-            <div className='mx-4 mt-12 mb-4 text-sm leading-loose'>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(product.description)
-                }}
-              />
-            </div>
+      <div className='container'>
+        <div className='mt-8 bg-white p-4 shadow'>
+          <div className='rounded bg-gray-50 p-4 text-lg capitalize text-slate-700'>Mô tả sản phẩm</div>
+          <div className='mx-4 mt-12 mb-4 text-sm leading-loose'>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(product.description)
+              }}
+            />
           </div>
         </div>
       </div>
       <div className='mt-8'>
         <div className='container'>
-          <div className='uppercase text-gray-500'>CÓ THỂ BẠN CŨNG THÍCH</div>
           {productsData && (
-            <div className='mt-6 grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6'>
+            <div className='mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
               {productsData.data.data.products.map((product) => (
                 <div className='col-span-1' key={product._id}>
                   <Product product={product} />

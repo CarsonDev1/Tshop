@@ -51,7 +51,15 @@ export default function Header() {
         }
     navigate({
       pathname: path.home,
-      search: createSearchParams(config).toString()
+      search: createSearchParams(
+        omit(
+          {
+            ...queryConfig,
+            name: data.name
+          },
+          ['order']
+        )
+      ).toString()
     })
   })
   return (

@@ -249,7 +249,7 @@ export default function ProductDetail() {
         <div className='container'>
           <div className='uppercase text-gray-500'>CÓ THỂ BẠN CŨNG THÍCH</div>
           {productsData && (
-            <div className='mt-6 grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6'>
+            <div className='mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
               {productsData.data.data.products.map((product) => (
                 <div className='col-span-1' key={product._id}>
                   <Product product={product} />
